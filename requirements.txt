@@ -1,0 +1,5 @@
+fastapi
+requests
+fastlab
+dotenv
+sse_starlette
