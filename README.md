@@ -2,7 +2,7 @@
 
 将 SambaNova Cloud Playground 转化成本地 API 服务，用于其他 LLM 客户端调用。
 
-## 快速开始
+## 🚀 快速开始
 
 ### 安装
 
@@ -64,9 +64,9 @@ response = client.chat.completions.create(
 - Qwen2-Audio-7B-Instruct
 
 
-## 常见问题
+## ❓ 常见问题
 
-### Samba Hook x Cherry Studio
+### 🍒 Samba Hook x Cherry Studio
 
 ![](./imgs/cherry-studio.png)
 
