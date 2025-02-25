@@ -43,7 +43,8 @@ response = client.chat.completions.create(
         {"role": "user", "content": "计算 111 * 222"}  
     ],  
     temperature=0.7,  
-    max_tokens=4096  
+    max_tokens=4096,
+    stream=True,
 )  
 ```
 
