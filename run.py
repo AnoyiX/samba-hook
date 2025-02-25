@@ -1,6 +1,5 @@
 from fastapi import FastAPI, Request
-from sse_starlette.sse import EventSourceResponse
-
+from fastapi.responses import StreamingResponse
 from samba import llm
 
 app = FastAPI()
@@ -10,8 +9,8 @@ async def llm_response_generator(body: dict):
     response = llm(body, True)
     for line in response.iter_lines():
         if line:
-            data = line.decode('utf-8').replace('data: ', '')
-            yield data
+            data = line.decode('utf-8')
+            yield data + "\n\n"
 
 
 def llm_response(body: dict):
@@ -24,12 +23,14 @@ async def chat(request: Request):
     body = await request.json()
     is_stream = body.get('stream', False)
     if is_stream:
-        async def event_generator():
-            async for data in llm_response_generator(body):
-                if await request.is_disconnected():
-                    break
-                yield {"data": data}
-        return EventSourceResponse(event_generator())
+        return StreamingResponse(
+            llm_response_generator(body),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+            }
+        )
     else:
         return llm_response(body)
 
