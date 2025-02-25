@@ -3,3 +3,4 @@ requests
 fastlab
 dotenv
 sse_starlette
+uvicorn

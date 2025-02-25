@@ -4,21 +4,27 @@
 
 ## 🚀 快速开始
 
-### 安装
-
-```bash
-pip3 install -r requirements.txt
-```
-
 ### 运行
 
-首先，参考文件 `.env.example` 设置环境变量，账号在 [SambaNova Cloud](https://cloud.sambanova.ai/) 注册。
-
-然后，启动服务：
+使用 Docker 启动服务：
 
 ```bash
-python3 app.py
+docker run -d \
+    -p 8000:8000 \
+    -e SAMBA_USERNAME=xxx \
+    -e SAMBA_PASSWORD=xxx \
+    anoyi/samba-hook:latest
 ```
+
+环境变量说明：
+
+| 环境变量          | 类型   | 默认值 | 必填 | 描述                   |
+| ----------------- | ------ | ------ | ---- | ---------------------- |
+| SAMBA_USERNAME    | string |        | 是   | SambaNova Cloud 账号   |
+| SAMBA_PASSWORD    | string |        | 是   | SambaNova Cloud 密码   |
+| SAMBA_CONFIG_PATH | string |        | 否   | SambaNova 配置文件路径 |
+
+> SambaNova Cloud 账号密码可以在 [https://cloud.sambanova.ai/](https://cloud.sambanova.ai/) 注册。
 
 ### API 文档
 
