@@ -76,6 +76,12 @@ def _get_access_token():
 def llm(body, stream):
     max_retries = 3
     retries = 0
+    env_type = 'text'
+    if 'audio' in body.get('model', '').lower():
+        env_type = 'audio'
+    if 'vision' in body.get('model', '').lower():
+        env_type = 'vision'
+    body['stream'] = stream
     while retries < max_retries:
         response = requests.post(
             'https://cloud.sambanova.ai/api/completion',
@@ -84,7 +90,7 @@ def llm(body, stream):
             },
             json={
                 'body': body,
-                'env_type': 'text',
+                'env_type': env_type,
                 'fingerprint': f"anon_{str(uuid4()).replace('-', '')}",
             },
             stream=stream,
