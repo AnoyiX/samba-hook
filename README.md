@@ -18,13 +18,11 @@ docker run -d \
 
 环境变量说明：
 
-| 环境变量          | 类型   | 默认值 | 必填 | 描述                   |
-| ----------------- | ------ | ------ | ---- | ---------------------- |
-| SAMBA_USERNAME    | string |        | 是   | SambaNova Cloud 账号   |
-| SAMBA_PASSWORD    | string |        | 是   | SambaNova Cloud 密码   |
-| SAMBA_CONFIG_PATH | string |        | 否   | SambaNova 配置文件路径 |
+| 环境变量    | 类型   | 默认值 | 必填 | 描述                                      |
+| ----------- | ------ | ------ | ---- | ----------------------------------------- |
+| SAMBA_TOKEN | string |        | 是   | SambaNova Cloud Cookies 中的 access_token |
 
-> SambaNova Cloud 账号密码可以在 [https://cloud.sambanova.ai/](https://cloud.sambanova.ai/) 注册。
+> 登录 [https://cloud.sambanova.ai/](https://cloud.sambanova.ai/) ，然后打开控制台获取 cookies 中的 access_token。
 
 ### API 文档
 
