@@ -11,8 +11,7 @@
 ```bash
 docker run -d \
     -p 8000:8000 \
-    -e SAMBA_USERNAME=xxx \
-    -e SAMBA_PASSWORD=xxx \
+    -e SAMBA_TOKEN=xxx \
     anoyi/samba-hook:latest
 ```
 
