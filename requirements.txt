@@ -1,5 +1,4 @@
 fastapi
 requests
-fastlab
 dotenv
 uvicorn
