@@ -7,9 +7,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 token = os.getenv('SAMBA_TOKEN')
+proxy_url = os.getenv('HTTPS_PROXY')
 
-if not token :
+proxies = {
+    'http': proxy_url,
+    'https': proxy_url,
+} if proxy_url else None
+
+if not token:
     raise Exception('SAMBA_TOKEN must be set in .env')
+
 
 def llm(body, stream):
     env_type = 'text'
@@ -29,4 +36,5 @@ def llm(body, stream):
             'fingerprint': f"anon_{str(uuid4()).replace('-', '')}",
         },
         stream=stream,
+        proxies=proxies
     )

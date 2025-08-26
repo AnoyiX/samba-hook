@@ -50,6 +50,7 @@ response = client.chat.completions.create(
 
 目前支持以下模型：
 
+- DeepSeek-V3.1
 - DeepSeek-R1-0528
 - DeepSeek-R1-Distill-Llama-70B
 - DeepSeek-V3-0324
