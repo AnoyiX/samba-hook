@@ -7,15 +7,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 token = os.getenv('SAMBA_TOKEN')
+token_api = os.getenv('SAMBA_TOKEN_API')
 proxy_url = os.getenv('HTTPS_PROXY')
 
 proxies = {
     'http': proxy_url,
     'https': proxy_url,
 } if proxy_url else None
-
-if not token:
-    raise Exception('SAMBA_TOKEN must be set in .env')
 
 
 def llm(body, stream):
@@ -25,6 +23,8 @@ def llm(body, stream):
     if 'vision' in body.get('model', '').lower():
         env_type = 'vision'
     body['stream'] = stream
+    if token_api:
+        token = requests.get(token_api).text
     return requests.post(
         'https://cloud.sambanova.ai/api/completion',
         cookies={

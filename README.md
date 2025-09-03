@@ -17,9 +17,12 @@ docker run -d \
 
 环境变量说明：
 
-| 环境变量    | 类型   | 默认值 | 必填 | 描述                                      |
-| ----------- | ------ | ------ | ---- | ----------------------------------------- |
-| SAMBA_TOKEN | string |        | 是   | SambaNova Cloud Cookies 中的 access_token |
+| 环境变量        | 类型   | 默认值 | 必填 | 描述                                      |
+| --------------- | ------ | ------ | ---- | ----------------------------------------- |
+| SAMBA_TOKEN     | string |        | 否   | SambaNova Cloud Cookies 中的 access_token |
+| SAMBA_TOKEN_API | string |        | 否   | 获取 SambaNova Cloud access_token 的API   |
+
+如果不提供 `SAMBA_TOKEN`，则需要提供 `SAMBA_TOKEN_API`，用于获取 access_token。`SAMBA_TOKEN_API` 响应的结果是 access_token 的纯文本。
 
 > 登录 [https://cloud.sambanova.ai/](https://cloud.sambanova.ai/) ，然后打开控制台获取 cookies 中的 access_token。
 
