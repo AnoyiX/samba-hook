@@ -10,7 +10,7 @@
 
 ```bash
 docker run -d \
-    -p 8001:8001 \
+    -p 8001:8000 \
     -e SAMBA_TOKEN=xxx \
     anoyi/samba-hook:latest
 ```
