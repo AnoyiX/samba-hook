@@ -23,12 +23,14 @@ def llm(body, stream):
     if 'vision' in body.get('model', '').lower():
         env_type = 'vision'
     body['stream'] = stream
+    body['enable_thinking'] = True
+    _token = token
     if token_api:
-        token = requests.get(token_api).text
+        _token = requests.get(token_api).text
     return requests.post(
         'https://cloud.sambanova.ai/api/completion',
         cookies={
-            'access_token': token,
+            'access_token': _token,
         },
         json={
             'body': body,
