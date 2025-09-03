@@ -10,7 +10,7 @@
 
 ```bash
 docker run -d \
-    -p 8000:8000 \
+    -p 8001:8001 \
     -e SAMBA_TOKEN=xxx \
     anoyi/samba-hook:latest
 ```
@@ -28,14 +28,14 @@ docker run -d \
 
 ### API 文档
 
-- Endpoint: `http://127.0.0.1:8000/v1/chat/completions`
+- Endpoint: `http://127.0.0.1:8001/v1/chat/completions`
 - API Key: `无`
 
 **OpenAI SDK 示例**
 
 ```python
 from openai import OpenAI
-client = OpenAI(api_key="----", base_url="http://127.0.0.1:8000/v1")
+client = OpenAI(api_key="----", base_url="http://127.0.0.1:8001/v1")
 response = client.chat.completions.create(  
     model="DeepSeek-R1",  
     messages=[    
@@ -75,5 +75,5 @@ response = client.chat.completions.create(
 - 名称 `SambaHook`
 - 类型 `OpenAI`
 - API 密钥：随便填
-- API 地址：`http://127.0.0.1:8000`
+- API 地址：`http://127.0.0.1:8001`
 - 模型：按上述模型列表添加即可
