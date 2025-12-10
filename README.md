@@ -24,6 +24,7 @@ docker run -d -p 8000:8000 --name samba anoyi/samba-hook:latest
 - Endpoint: `http://127.0.0.1:8000/v1/chat/completions`
 - API Key: `填写 SambaNova Cloud Playground 中的 access_token`
 
+> [!IMPORTANT]
 >  API Key 获取方式：登录 [https://cloud.sambanova.ai/](https://cloud.sambanova.ai/) ，然后打开控制台获取 cookies 中的 access_token。
 
 **OpenAI SDK 示例**
@@ -43,12 +44,9 @@ response = client.chat.completions.create(
 )  
 ```
 
-
 ### 模型列表
 
-
-Reasoning:
-
+Reasoning
 - DeepSeek-R1-0528
 - DeepSeek-R1-Distill-Llama-70B
 - DeepSeek-V3.1
@@ -57,20 +55,17 @@ Reasoning:
 - Qwen3-235B
 - Qwen3-32B
 
-Text:
-
+Text
 - ALLaM-7B-Instruct-preview
 - DeepSeek-V3-0324
 - Llama-3.3-Swallow-70B-Instruct-v0.4
 - Meta-Llama-3.1-8B-Instruct
 - Meta-Llama-3.3-70B-Instruct
 
-Image/Text:
-
+Image/Text
 - Llama-4-Maverick-17B-128E-Instruct
 
-Audio/Text:
-
+Audio/Text
 - Whisper-Large-v3
 
 ## ❓ 常见问题
@@ -82,6 +77,6 @@ Audio/Text:
 在 Cherry Studio 中添加模型提供商：
 - 名称 `SambaHook`
 - 类型 `OpenAI`
-- API 密钥：随便填
+- API 密钥：`SambaNova Cloud Playground 中的 access_token`
 - API 地址：`http://127.0.0.1:8000`
 - 模型：按上述模型列表添加即可
