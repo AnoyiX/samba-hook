@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-token = os.getenv('SAMBA_TOKEN')
-token_api = os.getenv('SAMBA_TOKEN_API')
 proxy_url = os.getenv('HTTPS_PROXY')
 
 proxies = {
@@ -16,7 +14,7 @@ proxies = {
 } if proxy_url else None
 
 
-def llm(body, stream):
+def llm(body, api_key, stream):
     env_type = 'text'
     if 'audio' in body.get('model', '').lower():
         env_type = 'audio'
@@ -24,13 +22,10 @@ def llm(body, stream):
         env_type = 'vision'
     body['stream'] = stream
     body['enable_thinking'] = True
-    _token = token
-    if token_api:
-        _token = requests.get(token_api).text
     return requests.post(
         'https://cloud.sambanova.ai/api/completion',
         cookies={
-            'access_token': _token,
+            'access_token': api_key,
         },
         json={
             'body': body,

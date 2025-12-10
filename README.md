@@ -9,33 +9,28 @@
 使用 Docker 启动服务：
 
 ```bash
-docker run -d \
-    -p 8001:8000 \
-    -e SAMBA_TOKEN=xxx \
-    anoyi/samba-hook:latest
+docker run -d -p 8000:8000 --name samba anoyi/samba-hook:latest
 ```
 
 环境变量说明：
 
-| 环境变量        | 类型   | 默认值 | 必填 | 描述                                      |
-| --------------- | ------ | ------ | ---- | ----------------------------------------- |
-| SAMBA_TOKEN     | string |        | 否   | SambaNova Cloud Cookies 中的 access_token |
-| SAMBA_TOKEN_API | string |        | 否   | 获取 SambaNova Cloud access_token 的API   |
+| 环境变量    | 类型   | 默认值 | 必填 | 描述                                |
+| ----------- | ------ | ------ | ---- | ----------------------------------- |
+| HTTPS_PROXY | string |        | 否   | 代理地址，格式为 `http://host:port` |
 
-如果不提供 `SAMBA_TOKEN`，则需要提供 `SAMBA_TOKEN_API`，用于获取 access_token。`SAMBA_TOKEN_API` 响应的结果是 access_token 的纯文本。
-
-> 登录 [https://cloud.sambanova.ai/](https://cloud.sambanova.ai/) ，然后打开控制台获取 cookies 中的 access_token。
 
 ### API 文档
 
-- Endpoint: `http://127.0.0.1:8001/v1/chat/completions`
-- API Key: `无`
+- Endpoint: `http://127.0.0.1:8000/v1/chat/completions`
+- API Key: `填写 SambaNova Cloud Playground 中的 access_token`
+
+>  API Key 获取方式：登录 [https://cloud.sambanova.ai/](https://cloud.sambanova.ai/) ，然后打开控制台获取 cookies 中的 access_token。
 
 **OpenAI SDK 示例**
 
 ```python
 from openai import OpenAI
-client = OpenAI(api_key="----", base_url="http://127.0.0.1:8001/v1")
+client = OpenAI(api_key="******************", base_url="http://127.0.0.1:8000/v1")
 response = client.chat.completions.create(  
     model="DeepSeek-R1",  
     messages=[    
@@ -51,18 +46,31 @@ response = client.chat.completions.create(
 
 ### 模型列表
 
-目前支持以下模型：
 
-- DeepSeek-V3.1
+Reasoning:
+
 - DeepSeek-R1-0528
 - DeepSeek-R1-Distill-Llama-70B
+- DeepSeek-V3.1
+- DeepSeek-V3.1-Terminus
+- gpt-oss-120b
+- Qwen3-235B
+- Qwen3-32B
+
+Text:
+
+- ALLaM-7B-Instruct-preview
 - DeepSeek-V3-0324
-- E5-Mistral-7B-Instruct
 - Llama-3.3-Swallow-70B-Instruct-v0.4
-- Llama-4-Maverick-17B-128E-Instruct
 - Meta-Llama-3.1-8B-Instruct
 - Meta-Llama-3.3-70B-Instruct
-- Qwen3-32B
+
+Image/Text:
+
+- Llama-4-Maverick-17B-128E-Instruct
+
+Audio/Text:
+
 - Whisper-Large-v3
 
 ## ❓ 常见问题
@@ -75,5 +83,5 @@ response = client.chat.completions.create(
 - 名称 `SambaHook`
 - 类型 `OpenAI`
 - API 密钥：随便填
-- API 地址：`http://127.0.0.1:8001`
+- API 地址：`http://127.0.0.1:8000`
 - 模型：按上述模型列表添加即可
